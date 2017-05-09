@@ -9,7 +9,8 @@ function validateInput($username, $password, $email)
         echo $usernameErr;
         return false;
     }
-        //empty email
+    
+    //empty email
     if (empty($email)) 
     {
         $emailErr = "Please enter an email!";
@@ -47,18 +48,54 @@ function getDatabase() {
         return new PDO($dsn, $user, $pass, $opt);
 }
 
-//separate code into different function for it to write to DB if all ok and not empty
 
-function registerUser($username, $passwordHash, $email) 
+//function here to check if username already exists - use $lowerUsername var
+
+function usernameExists($lowerUsername) 
 {
-    if (!empty($username) && !empty($passwordHash) && !empty($email)) 
+    
+    //need to set up the pdo connection again
+    $pdo = getDatabase();
+   
+    //preparing stmt here that selects number of rows (count(id)) where the 
+    //username is equal to the lowerUsername var (done with binding to avoid
+    //sql injection).
+    $stmt = $pdo->prepare('SELECT count(id) AS userExists FROM users WHERE username = :username');
+    $stmt->bindParam(':username', $lowerUsername);
+    
+   // when pdo stmt is executed I fetch the result of the SQL query
+   // this should be either 1 or 0 because username column is set to unique in db
+   // I then convert this to a boolean so it returns true (if 1) or false (if 0)
+   // If true and username does exist already then I echo error code
+   // I need to then return the $userExists variable
+    if ($stmt->execute()) {
+        // success
+       $userExists = (bool) $stmt->fetch()['userExists'];
+       
+       if($userExists)
+       {
+           echo "Username already exists";
+       }
+       
+       return $userExists;
+    } else {
+        // failure
+    }
+}
+
+
+// different function for it to write to DB if all ok and not empty
+
+function registerUser($lowerUsername, $passwordHash, $email) 
+{
+    if (!empty($lowerUsername) && !empty($passwordHash) && !empty($email)) 
     {
         $pdo = getDatabase();
     
         //pdo prepare, bindParam & execute
         //this is inserting the submitted username, password & email into the login DB
         $stmt = $pdo->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
-        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':username', $lowerUsername);
         $stmt->bindParam(':password', $passwordHash);
         $stmt->bindParam(':email', $email);
         
@@ -77,9 +114,22 @@ if($_SERVER['REQUEST_METHOD']== "POST")
 {
     if(validateInput($_POST['username'], $_POST['password'], $_POST['email'])) 
     {
+        
+        //hash the password & pass the new var into registerUser
         $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
         
-        registerUser($_POST['username'], $passwordHash, $_POST['email']);
+        //convert username to lowercase before adding to db
+        $lowerUsername = strtolower($_POST['username']);
+        
+        
+        //IF username doesn't already exist then it can all be written to db
+        if(!usernameExists($lowerUsername)) 
+        {
+            
+        
+        
+        registerUser($lowerUsername, $passwordHash, $_POST['email']);
+        }
     }
 }
 
