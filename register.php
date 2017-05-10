@@ -149,6 +149,7 @@ if($_SERVER['REQUEST_METHOD']== "POST")
       <form action="register.php" method="POST">
         <p>Username: <input type="text" name="username" required /></p>
         <p>Password: <input type="password" name="password" required /></p>
+        <p>Min 8 characters. Must contain one number, and one upper and lower case letter.</p>
         <p>Email: <input type="email" name="email" required /></p>
         <p><input type="submit" value="Register" /></p>
       </form>
