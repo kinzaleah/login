@@ -1,38 +1,81 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
 /**
  * validation of registration information
  * @return bool
  */
-function validateInput($username, $password, $email) 
+// function validateInput($username, $password, $email) 
+// {
+//     //empty username
+//     if (empty($username)) 
+//     {
+//         return "Please enter a Username!";
+//         //return a string of error message
+        
+//     }
+    
+//     //empty email
+//     if (empty($email)) 
+//     {
+//         return "Please enter an email!";
+//         //return a string of error message
+        
+//     }
+        
+//     //regex for checking it contains lowercase, uppercase, a number & min 8 chars
+//     //if it doesn't then it displays an error
+//     if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/', $password))
+//     {
+//         return 'Please enter a valid password';
+//         //return a string of error message
+//     } 
+    
+//     return true;
+// }
+
+
+function usernameIsValid($username)
 {
-    //empty username
+   //empty username
     if (empty($username)) 
     {
-        $usernameErr = "Please enter a Username!";
-        echo $usernameErr;
-        return false;
-    }
-    
-    //empty email
-    if (empty($email)) 
-    {
-        $emailErr = "Please enter an email!";
-        echo $emailErr;
-        return false;
-    }
+        return "Please enter a username!";
         
-    //regex for checking it contains lowercase, uppercase, a number & min 8 chars
-    //if it doesn't then it displays an error
-    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/', $password))
-    {
-        echo 'Please enter a valid password';
-        return false;
-    } 
+        //return a string of error message
+    } else {
     
-    return true;
+        return true;
+    }
 }
 
+function emailIsValid($email)
+{
+   //empty email
+    if (empty($email)) 
+    {
+        return "Please enter an email!";
+        //return a string of error message
+    } else {
+    
+        return true;
+    }
+}
+
+function passwordIsValid($password)
+{
+   //regex for checking it contains lowercase, uppercase, a number & min 8 chars
+   //if it doesn't then it displays an error
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/', $password))
+    {
+        return 'Please enter a valid password!';
+        //return a string of error message
+    } else {
+    
+        return true;
+    }
+}
 
 /**
  * PDO connection for database
@@ -83,12 +126,8 @@ function usernameExists($lowerUsername)
         // success
        $userExists = (bool) $stmt->fetch()['userExists'];
        
-       if($userExists)
-       {
-           echo "Username already exists";
-       }
-       
        return $userExists;
+       
     } else {
         // failure - throw an exception?
     }
@@ -145,3 +184,15 @@ function checkCredentials($username, $password)
     //Returns TRUE if the password and hash match, or FALSE otherwise.
     return password_verify($password, $result['password']);
 }    
+
+
+//this is the stuff needed to get Twig
+function getTwig()
+{
+   $loader = new Twig_Loader_Filesystem(__DIR__ . '/view');
+   $twig = new Twig_Environment($loader, [
+    //'cache' => __DIR__ . '/cache',
+    ]);
+    
+    return $twig;
+}

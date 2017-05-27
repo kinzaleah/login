@@ -2,11 +2,18 @@
 
 include 'functions.php';
 
+$twig = getTwig();
+
 //run the functions if someone posts - validateInput first then if all ok registerUSer
 
-if($_SERVER['REQUEST_METHOD']== "POST")
+if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-    if(validateInput($_POST['username'], $_POST['password'], $_POST['email'])) 
+    
+    $usernameIsValid = usernameIsValid($_POST['username']);
+    $emailIsValid = emailIsValid($_POST['email']);
+    $passwordIsValid = passwordIsValid($_POST['password']);
+    
+    if($usernameIsValid === true && $emailIsValid === true && $passwordIsValid === true) 
     {
         
         //hash the password & pass the new var into registerUser
@@ -15,37 +22,43 @@ if($_SERVER['REQUEST_METHOD']== "POST")
         //convert username to lowercase before adding to db
         $lowerUsername = strtolower($_POST['username']);
         
+        $usernameExistsError = "";
         
         //IF username doesn't already exist then it can all be written to db
         if(!usernameExists($lowerUsername)) 
         {
-            
-        
-        
-        registerUser($lowerUsername, $passwordHash, $_POST['email']);
+            registerUser($lowerUsername, $passwordHash, $_POST['email']);
+        } else {
+            $usernameExistsError = "Username already exists, please choose another!";
         }
     }
 }
 
+
+$errorMessages = [];
+
+if ($usernameIsValid !== true) 
+{
+    $errorMessages['username'] = $usernameIsValid;
+   
+}
+
+if (!empty($usernameExistsError)) 
+{
+    $errorMessages['username'] = $usernameExistsError;
+}
+
+if ($emailIsValid !== true) 
+{
+    $errorMessages['email'] = $emailIsValid;
+}
+
+if ($passwordIsValid !== true) 
+{
+    $errorMessages['password'] = $passwordIsValid;
+}
+
+
+echo $twig->render('register.twig', ['errorMessages' => $errorMessages]);
+
 ?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>My first PHP Website</title>
-    </head>
-
-    <body>
-      <h2>Registration Page</h2>
-
-      <a href ="index.php">Click here to go back</a>
-
-      <form action="register.php" method="POST">
-        <p>Username: <input type="text" name="username" required /></p>
-        <p>Password: <input type="password" name="password" required /></p>
-        <p>Min 8 characters. Must contain one number, and one upper and lower case letter.</p>
-        <p>Email: <input type="email" name="email" required /></p>
-        <p><input type="submit" value="Register" /></p>
-      </form>
-    </body>
-</html>
