@@ -169,7 +169,7 @@ function checkCredentials($username, $password)
     
     //pdo prepare, bindParam & execute
     //this is selecting the entered username from the db
-    $stmt = $pdo->prepare('SELECT username, password FROM users WHERE username = :username');
+    $stmt = $pdo->prepare('SELECT username, password, id FROM users WHERE username = :username');
     $stmt->bindParam(':username', $username);
       
     if (!$stmt->execute()) 
@@ -178,11 +178,21 @@ function checkCredentials($username, $password)
         return;
     }
     
-    //fetch the result
+    //fetch the result - will be an associative array with the column names as keys
     $result = $stmt->fetch();
     
     //Returns TRUE if the password and hash match, or FALSE otherwise.
-    return password_verify($password, $result['password']);
+    $passwordIsCorrect = password_verify($password, $result['password']);
+    
+    if ($passwordIsCorrect) 
+    {
+        return [
+            "user_id" => $result["id"],
+            "username" => $result["username"]
+        ];
+    }
+    
+    return false;
 }    
 
 

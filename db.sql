@@ -58,6 +58,26 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO users (username, password, email) VALUES ('kinza', '$2y$10$LLDBg4Abpv38l0XwpjZKh.ljtgHs/CpgQLHgi0hjUyEybQa.PR4Ay', 'kinzadrewett@gmail.com');
 
+--
+-- Table structure for table `blog`
+--
+
+DROP TABLE IF EXISTS `blog`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `blog` (
+  `blog_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `body` text NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`blog_id`),
+  UNIQUE KEY `blog_id_UNIQUE` (`blog_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+  

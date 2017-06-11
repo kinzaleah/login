@@ -1,7 +1,12 @@
 <?php
 
+include 'functions.php';
+$twig = getTwig();
+
 session_start();
+
+
 
 session_destroy();
 
-echo "You are now logged out";
+echo $twig->render('logged_out.twig');

@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    <h2>Enter your blog post here!</h2>
+
+   <a href ="/logged_in.php">Click here to go back</a>
+   
+   <form action="blog_input.php" method="POST">
+   
+    <p>Title: <input type="text" name="title"/> </p>
+    <p>Blog: <textarea name="body" rows="10" cols="50"> </textarea> </p>
+    
+    <p><input type="submit" value="Post your blog!"></p>
+   
+   
+    
+   </form>
+
+
+
+
+{% endblock %}

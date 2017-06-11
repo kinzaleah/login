@@ -1,17 +1,7 @@
 <?php
 
+include 'functions.php';
 session_start();
+$twig = getTwig();
 
-?>
-
-<?php if($_SESSION['loggedIn']): ?>
-    You are logged in. Yay!
-    
-    <a href="/logged_out.php">Log out</a>
-<?php else : ?>
-    You are not logged in. Boo!
-<?php endif; ?>
-
-
-
-
+echo $twig->render('logged_in.twig', ['loggedIn' => !empty($_SESSION["user_id"])]);

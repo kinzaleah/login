@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+   {% if loggedIn %}
+  You are logged in. Yay!
+    <p><a href ="blog_input.php">Post a blog</a></p>
+    <a href="/logged_out.php">Log out</a>
+  {% else %}
+  
+  You are not logged in. Boo!
+  {%endif%}
+  
+   
+   
+   
+{% endblock %}

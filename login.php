@@ -10,9 +10,11 @@ session_start();
 
 if($_SERVER['REQUEST_METHOD']== "POST") 
 {
- if (checkCredentials($_POST['username'], $_POST['password'])) 
+ 
+ $user = checkCredentials($_POST['username'], $_POST['password']);
+ if ($user !== false) 
  {
-   $_SESSION['loggedIn'] = true;
+   $_SESSION['user_id'] = $user["user_id"];
    header('Location: /logged_in.php');
  }
   
