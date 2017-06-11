@@ -8,6 +8,14 @@ $twig = getTwig();
 
 session_start();
 
+if(!empty($_SESSION['user_id']))
+{
+ header('Location: /logged_in.php');
+}
+
+
+
+
 if($_SERVER['REQUEST_METHOD']== "POST") 
 {
  

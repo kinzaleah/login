@@ -6,4 +6,10 @@ $twig = getTwig();
 
 
 
-echo $twig->render('blog.twig');
+
+
+
+$posts = displayBlogs();
+
+
+echo $twig->render('blog.twig', ['posts' => $posts]);

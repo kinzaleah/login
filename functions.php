@@ -2,38 +2,7 @@
 
 require_once 'vendor/autoload.php';
 
-/**
- * validation of registration information
- * @return bool
- */
-// function validateInput($username, $password, $email) 
-// {
-//     //empty username
-//     if (empty($username)) 
-//     {
-//         return "Please enter a Username!";
-//         //return a string of error message
-        
-//     }
-    
-//     //empty email
-//     if (empty($email)) 
-//     {
-//         return "Please enter an email!";
-//         //return a string of error message
-        
-//     }
-        
-//     //regex for checking it contains lowercase, uppercase, a number & min 8 chars
-//     //if it doesn't then it displays an error
-//     if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/', $password))
-//     {
-//         return 'Please enter a valid password';
-//         //return a string of error message
-//     } 
-    
-//     return true;
-// }
+
 
 
 function usernameIsValid($username)
@@ -77,29 +46,6 @@ function passwordIsValid($password)
     }
 }
 
-/**
- * PDO connection for database
- * @return PDO
- */
-function getDatabase() {
-    //pdo connection stuff in its own function
-        $host = getenv('IP') . ':3306';
-        $db   = 'c9';
-        $user = getenv('C9_USER');
-        $pass = '';
-        $charset = 'utf8';
-    
-        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-    
-        //i'm not entirely sure what this is
-        $opt = [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES   => false,
-        ];
-        return new PDO($dsn, $user, $pass, $opt);
-}
-
 
 
 /**
@@ -136,7 +82,7 @@ function usernameExists($lowerUsername)
 
 
 /**
- * write to DB if all ok and not empty
+ * write to DB if all inputs ok and not empty
  */
 function registerUser($lowerUsername, $passwordHash, $email) 
 {
@@ -162,7 +108,11 @@ function registerUser($lowerUsername, $passwordHash, $email)
 }
 
 
-
+/*
+Used when logging in, checking entered username and password against what is held in db
+password verify on hashed password
+returns user_id (for session) and username (no reason not to)
+*/
 function checkCredentials($username, $password) 
 {
     $pdo = getDatabase();
@@ -174,11 +124,11 @@ function checkCredentials($username, $password)
       
     if (!$stmt->execute()) 
     {
-        // failure - throw exception?
+        // failure - stops function if it can't execute
         return;
     }
     
-    //fetch the result - will be an associative array with the column names as keys
+    //fetch the result - will be an associative array (this is the default) with the column names as keys
     $result = $stmt->fetch();
     
     //Returns TRUE if the password and hash match, or FALSE otherwise.
@@ -193,7 +143,96 @@ function checkCredentials($username, $password)
     }
     
     return false;
-}    
+}   
+
+
+
+/*
+
+BLOG INPUT FUNCTIONS
+
+*/
+
+function titleIsEmpty($blogTitle)
+{
+   //empty blog title
+    if (empty($blogTitle)) 
+    {
+        return "Please enter a title!";
+        //return a string of error message
+    } else {
+    
+        return false;
+    }
+}
+
+function bodyIsEmpty($blogBody)
+{
+   //empty blog body
+    if (empty($blogBody)) 
+    {
+        return "Please enter your blog!";
+        //return a string of error message
+    } else {
+    
+        return false;
+    }
+}
+
+
+
+/**
+ * @return array
+ * 
+ */
+
+function addBlog($blogTitle, $blogBody, $userId) 
+{
+    if (!empty($blogTitle) && !empty($blogBody)) 
+    {
+        $pdo = getDatabase();
+    
+        //pdo prepare, bindParam & execute
+        //this is inserting the submitted blog title & body into DB if not empty
+        $stmt = $pdo->prepare('INSERT INTO blog (title, body, user_id ) VALUES (:title, :body, :user_id)');
+        $stmt->bindParam(':title', $blogTitle);
+        $stmt->bindParam(':body', $blogBody);
+        $stmt->bindParam(':user_id', $userId);
+        
+        
+        
+        if ($stmt->execute()) 
+        {
+            // success
+        } else {
+            // failure
+        }
+    }
+}
+
+
+
+function displayBlogs() 
+{
+    $pdo = getDatabase();
+    
+    //pdo prepare, bindParam & execute
+    //this is selecting the blogs from the db in order of created at
+    $stmt = $pdo->prepare('SELECT title, body FROM blog ORDER BY created_at');
+    
+      
+    if (!$stmt->execute()) 
+    {
+        // failure - throw exception at later date?
+        return;
+    }
+    
+    //fetch the results - will be an associative array with the column names as keys
+    //fetch all returns all the rows i.e. all the blog posts
+    $result = $stmt->fetchAll();
+    
+    return $result;
+}
 
 
 //this is the stuff needed to get Twig
@@ -206,3 +245,27 @@ function getTwig()
     
     return $twig;
 }
+
+/**
+ * PDO connection for database
+ * @return PDO
+ */
+function getDatabase() {
+    //pdo connection stuff in its own function
+        $host = getenv('IP') . ':3306';
+        $db   = 'c9';
+        $user = getenv('C9_USER');
+        $pass = '';
+        $charset = 'utf8';
+    
+        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+    
+        //i'm not entirely sure what this is
+        $opt = [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES   => false,
+        ];
+        return new PDO($dsn, $user, $pass, $opt);
+}
+
