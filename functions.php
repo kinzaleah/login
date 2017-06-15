@@ -218,7 +218,7 @@ function displayBlogs()
     
     //pdo prepare, bindParam & execute
     //this is selecting the blogs from the db in order of created at
-    $stmt = $pdo->prepare('SELECT title, body FROM blog ORDER BY created_at');
+    $stmt = $pdo->prepare('SELECT title, body, username AS author FROM blog LEFT JOIN users ON blog.user_id = users.id ORDER BY created_at');
     
       
     if (!$stmt->execute()) 
