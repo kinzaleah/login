@@ -2,8 +2,7 @@
 
 require_once 'vendor/autoload.php';
 
-
-
+use Kinza\User;
 
 function usernameIsValid($username)
 {
@@ -136,10 +135,10 @@ function checkCredentials($username, $password)
     
     if ($passwordIsCorrect) 
     {
-        return [
-            "user_id" => $result["id"],
-            "username" => $result["username"]
-        ];
+        $user = new User;
+        $user->id = $result["id"];
+        $user->username = $result["username"];
+        return $user;
     }
     
     return false;

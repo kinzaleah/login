@@ -22,7 +22,9 @@ if($_SERVER['REQUEST_METHOD']== "POST")
  $user = checkCredentials($_POST['username'], $_POST['password']);
  if ($user !== false) 
  {
-   $_SESSION['user_id'] = $user["user_id"];
+   
+   $_SESSION['user'] = $user;
+   
    header('Location: /logged_in.php');
  }
   
