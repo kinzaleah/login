@@ -2,8 +2,15 @@
 
 include 'functions.php';
 
+
 $twig = getTwig();
 session_start();
+
+if(empty($_SESSION['user'])) 
+{
+   header('Location: /login.php'); 
+    
+}
 
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
@@ -26,4 +33,4 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
 
 
-echo $twig->render('blog_input.twig');
+echo $twig->render('blog_input.twig', ["loggedIn" => !empty($_SESSION['user'])]);

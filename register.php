@@ -4,6 +4,16 @@ include 'functions.php';
 
 $twig = getTwig();
 
+session_start();
+
+
+if (!empty($_SESSION['user'])) 
+{
+    header('Location: /logged_in.php');
+    
+}
+
+
 //run the functions if someone posts - validateInput first then if all ok registerUSer
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
@@ -59,6 +69,6 @@ if ($passwordIsValid !== true)
 }
 
 
-echo $twig->render('register.twig', ['errorMessages' => $errorMessages]);
+echo $twig->render('register.twig', ['errorMessages' => $errorMessages, 'loggedIn' => !empty($_SESSION['user'])]);
 
 ?>

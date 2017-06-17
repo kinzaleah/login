@@ -1,6 +1,7 @@
 <?php
 
 include 'functions.php';
+session_start();
 
 $twig = getTwig();
 
@@ -8,4 +9,4 @@ $twig = getTwig();
 
 
 
-echo $twig->render('index.twig');
+echo $twig->render('index.twig', ["loggedIn" => !empty($_SESSION['user'])]);

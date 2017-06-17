@@ -13,6 +13,28 @@
     </style>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="/index.php">Home</a></li>
+            <li><a href="/blog.php">Blog</a></li>
+            
+            
+            
+            
+            
+            {% if loggedIn %}
+                <li><a href="/blog_input.php">Post a blog</a></li>
+                <li><a href="/logged_out.php">Log out</a></li>
+            {% else %}
+                <li><a href="/login.php">Log in</a></li>
+                <li><a href="/register.php">Register</a></li>
+            {% endif %}
+        </ul>
+        
+        
+    </nav>
+    
+    
     {% block content %}{% endblock %}
 </body>
 </html>

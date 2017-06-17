@@ -8,7 +8,7 @@ $twig = getTwig();
 
 session_start();
 
-if(!empty($_SESSION['user_id']))
+if(!empty($_SESSION['user']))
 {
  header('Location: /logged_in.php');
 }
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']== "POST")
   
 }
 
-echo $twig->render('login.twig');
+echo $twig->render('login.twig', ['loggedIn' => !empty($_SESSION['user'])]);
 
 
 

@@ -5,8 +5,7 @@ $twig = getTwig();
 
 session_start();
 
+unset($_SESSION['user']);
 
 
-session_destroy();
-
-echo $twig->render('logged_out.twig');
+echo $twig->render('logged_out.twig', ['loggedIn' => !empty($_SESSION['user'])]);
