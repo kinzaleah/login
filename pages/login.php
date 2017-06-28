@@ -1,16 +1,16 @@
 <?php
 
-include 'functions.php';
+
 
 $twig = getTwig();
 
 
 
-session_start();
+
 
 if(!empty($_SESSION['user']))
 {
- header('Location: /logged_in.php');
+ header('Location: /logged_in');
 }
 
 
@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD']== "POST")
    
    $_SESSION['user'] = $user;
    
-   header('Location: /logged_in.php');
+   header('Location: /logged_in');
  }
   
 }

@@ -1,8 +1,5 @@
 <?php
 
-include 'functions.php';
-session_start();
-
 $twig = getTwig();
 
 

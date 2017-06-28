@@ -1,9 +1,9 @@
 <?php
 
-include 'functions.php';
+
 $twig = getTwig();
 
-session_start();
+
 
 unset($_SESSION['user']);
 
