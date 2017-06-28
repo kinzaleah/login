@@ -49,3 +49,5 @@ Temporary Items
 vendor/
 
 classes/Config.php
+
+node_modules/
