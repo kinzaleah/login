@@ -129,3 +129,36 @@ li {
 }
 
 
+.invalid {
+  border: solid 1px red;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.nav-container{
+  justify-content: space-between;
+}
+
+.navigation-general {
+  display: flex;
+  flex-direction: row;
+}
+
+.navigation-auth {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.nav-link {
+  margin-right: 20px;
+}
+
+.nav-auth {
+  margin-left: 20px;
+  float: right;
+}
