@@ -14,27 +14,28 @@
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
-            
-            
-            
-            
-            
+    <nav class="navigation nav-container">
+        <ul class="navigation navigation-general">
+            <li class="nav-link"><a href="/home">Home</a></li>
+            <li class="nav-link"><a href="/blog">Blog</a></li>
+
             {% if loggedIn %}
-                <li><a href="/blog_input">Post a blog</a></li>
-                <li><a href="/logged_out">Log out</a></li>
-            {% else %}
-                <li><a href="/login">Log in</a></li>
-                <li><a href="/register">Register</a></li>
+                <li class="nav-link"><a href="/blog_input">Post a blog</a></li>
+                <li class="nav-link"><a href="/instagram">Instagram</a></li>
             {% endif %}
         </ul>
         
-        
+        <ul class="navigation navigation-auth">
+
+            
+            {% if loggedIn %}
+                <li class="nav-auth"><a href="/logged_out">Log out</a></li>
+            {% else %}
+                <li class="nav-auth"><a href="/login">Log in</a></li>
+                <li class="nav-auth"><a href="/register">Register</a></li>
+            {% endif %}
+        </ul>
     </nav>
-    
     
     {% block content %}{% endblock %}
 </body>

@@ -2,6 +2,15 @@
 
 {% block content %}
 
+    <h1>Instagram</h1>
+
+{% for img in images  %}
+
+    <img src="{{img.images.standard_resolution.url}}">
+    <p> {{img.caption.text}} </p>
+    <p> {{img.likes.count}} likes </p>
+    
+{% endfor %}
 
 
 {% endblock %}
