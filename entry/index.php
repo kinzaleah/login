@@ -1,9 +1,15 @@
 <?php
 
-include __DIR__ .'/../functions.php';
+// __DIR__ is a magic constant that gives you the directory of the current file
+require __DIR__ .'/../functions.php';
+
+
 session_start();
 
+ 
 $urlParts = explode('/', $_SERVER['REQUEST_URI']);
+
+//if $urlParts[1] is truthy use it, otherwise use 'home'
 $pageName = $urlParts[1] ?: 'home';
 
 
@@ -16,6 +22,7 @@ if (file_exists($filePath))
     require $filePath;
 } else
 {
+    //errpr 
     http_response_code(404);
     echo "404";
 }

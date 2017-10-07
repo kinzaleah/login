@@ -110,7 +110,7 @@ function registerUser($lowerUsername, $passwordHash, $email)
 /*
 Used when logging in, checking entered username and password against what is held in db
 password verify on hashed password
-returns user_id (for session) and username (no reason not to)
+returns user_id (for session) and username 
 */
 function checkCredentials($username, $password) 
 {
@@ -222,7 +222,7 @@ function displayBlogs()
       
     if (!$stmt->execute()) 
     {
-        // failure - throw exception at later date?
+        // failure - throw exception at later date maybe
         return;
     }
     
