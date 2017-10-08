@@ -227,7 +227,7 @@ function displayBlogs($author = null)
     SELECT title, body, username AS author 
     FROM blog LEFT JOIN users ON blog.user_id = users.id
     $whereClause
-    ORDER BY created_at
+    ORDER BY created_at DESC
 SQL;
 
     //pdo prepare, bindParam & execute
