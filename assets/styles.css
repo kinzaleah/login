@@ -1,6 +1,6 @@
 body {
 
-  background: linear-gradient(to right, #4CFFA3 , #21A694);
+  background: linear-gradient(to right, #4CFFA3 , #46f9e1);
   font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
   padding-left: 10px;
   color: #4d4d4d;
@@ -9,13 +9,14 @@ body {
 
 .heading {
 
-  text-align: center;
-  font-size: 6em;
+  text-align: left;
+  font-size: 4.2em;
   color: #F5409A;
   text-shadow: 2px 2px 150px #02ffc5, 2px 2px #575757;
-  margin-top: 0;
+  margin-top: 20px;
   margin-bottom: 20px;
-  padding-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 30px;
 }
 
 h2 {
@@ -99,6 +100,7 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
   padding: 5px;
   border: solid;
   border-color: #686767;
+  background-color: #96ffd6;
  }
 
 .nav-auth {
@@ -107,4 +109,43 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
   padding: 5px;
   border: solid;
   border-color: #686767;
+  background-color: #96ffd6;
 }
+
+.blog-link {
+  display: inline-block;
+  font-size: 1.2em;
+  margin-left: 0px;
+  font-weight: bold;
+  padding-bottom: 10px;
+  display: inline-block;
+    background-size: 150% 15px;
+    position: relative;
+    background-image: linear-gradient(to right, #ffc600 50%, #ffc600 50%);
+    background-position: 0;
+    background-repeat: no-repeat;
+}
+
+.blog-post {
+  padding: 20px 0px 20px 0px;
+  font-weight: bold;
+}
+
+.blog-title {
+    font-size: 1.5em;
+    margin: 10px 0 0 0;
+    display: inline-block;
+    /*background-size: 150% 15px;
+    position: relative;
+    background-image: linear-gradient(to right, #ffc600 50%, #ffc600 50%);
+    background-position: 0;
+    background-repeat: no-repeat;
+}*/
+
+
+
+/*.blog-title:hover {
+    transform: rotate(1deg);
+    bottom: 0;
+}*/
+

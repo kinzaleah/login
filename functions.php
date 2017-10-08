@@ -211,13 +211,32 @@ function addBlog($blogTitle, $blogBody, $userId)
 
 
 
-function displayBlogs() 
+function displayBlogs($author = null) 
 {
     $pdo = getDatabase();
     
+    if($author === null){
+        $whereClause = '';
+    } else {
+        $whereClause = 'WHERE username = :author';
+    }
+    
+    
+    $query = 
+<<<SQL
+    SELECT title, body, username AS author 
+    FROM blog LEFT JOIN users ON blog.user_id = users.id
+    $whereClause
+    ORDER BY created_at
+SQL;
+
     //pdo prepare, bindParam & execute
     //this is selecting the blogs from the db in order of created at
-    $stmt = $pdo->prepare('SELECT title, body, username AS author FROM blog LEFT JOIN users ON blog.user_id = users.id ORDER BY created_at');
+    $stmt = $pdo->prepare($query);
+    
+    if($author !== null){
+        $stmt->bindParam(':author', $author);
+    }
     
       
     if (!$stmt->execute()) 
@@ -233,6 +252,37 @@ function displayBlogs()
     return $result;
 }
 
+
+function getAuthors($hasPosts = true) 
+{
+    $pdo = getDatabase();
+    
+    $query = 
+<<<SQL
+    SELECT distinct username AS author 
+    FROM users LEFT JOIN blog ON blog.user_id = users.id
+    WHERE blog.blog_id is not null
+SQL;
+
+    //pdo prepare & execute - no binding as no variables used
+    //this is selecting the usernames that have blog posts from the db in order of created at
+    $stmt = $pdo->prepare($query);
+    
+   
+    if (!$stmt->execute()) 
+    {
+        // failure - throw exception at later date maybe
+        return;
+    }
+    
+    //fetch the results - will be an associative array with the column names as keys
+    //fetch all returns all the rows i.e. all the usernames that have blog posts
+    $result = $stmt->fetchAll();
+    
+    return $result;
+    
+    
+}
 
 //this is the stuff needed to get Twig
 function getTwig()
