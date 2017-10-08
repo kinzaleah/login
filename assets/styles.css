@@ -4,6 +4,7 @@ body {
   font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
   padding-left: 10px;
   color: #4d4d4d;
+  max-width: 700px;
 }
 
 
@@ -41,6 +42,11 @@ h2 {
 
 img:hover {
   filter: brightness(105%);
+}
+
+img {
+  max-height: 500px;
+  max-width: 500px;
 }
 
 
@@ -118,12 +124,11 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
   margin-left: 0px;
   font-weight: bold;
   padding-bottom: 10px;
-  display: inline-block;
-    background-size: 150% 15px;
-    position: relative;
-    background-image: linear-gradient(to right, #ffc600 50%, #ffc600 50%);
-    background-position: 0;
-    background-repeat: no-repeat;
+  background-size: 150% 15px;
+  position: relative;
+  background-image: linear-gradient(to right, #ffc600 50%, #ffc600 50%);
+  background-position: 0;
+  background-repeat: no-repeat;
 }
 
 .blog-post {
@@ -135,6 +140,7 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
     font-size: 1.5em;
     margin: 10px 0 0 0;
     display: inline-block;
+}
     /*background-size: 150% 15px;
     position: relative;
     background-image: linear-gradient(to right, #ffc600 50%, #ffc600 50%);
@@ -147,5 +153,10 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
 /*.blog-title:hover {
     transform: rotate(1deg);
     bottom: 0;
-}*/
+}
+*/
+
+.insta {
+  padding: 20px 0;
+}
 

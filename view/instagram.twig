@@ -6,9 +6,11 @@
 
 {% for img in images  %}
 
-    <img src="{{img.images.standard_resolution.url}}">
-    <p> {{img.caption.text}} </p>
-    <p> {{img.likes.count}} likes </p>
+    <div class="insta">
+        <img src="{{img.images.standard_resolution.url}}">
+        <p> {{img.caption.text}} </p>
+        <p> {{img.likes.count}} likes </p>
+    </div>
     
 {% endfor %}
 
