@@ -4,6 +4,14 @@ require_once 'vendor/autoload.php';
 
 use Kinza\User;
 
+
+
+
+/*
+        REGISTER FUNCTIONS
+*/
+
+
 function usernameIsValid($username)
 {
    //empty username
@@ -107,6 +115,21 @@ function registerUser($lowerUsername, $passwordHash, $email)
 }
 
 
+
+
+
+
+
+
+
+/*
+
+    LOG IN FUNCTIONS
+
+*/
+
+
+
 /*
 Used when logging in, checking entered username and password against what is held in db
 password verify on hashed password
@@ -143,6 +166,12 @@ function checkCredentials($username, $password)
     
     return false;
 }   
+
+
+
+
+
+
 
 
 
@@ -283,6 +312,53 @@ SQL;
     
     
 }
+
+
+
+/*
+
+    TV FUNCTIONS
+
+*/
+
+
+   
+
+function addShow($title, $genre, $season, $platform, $notes) {
+    
+    
+    
+    
+    if (!empty($title) && !empty($genre) && !empty($season) && !empty($platform)) 
+    {
+        $pdo = getDatabase();
+    
+        //pdo prepare, bindParam & execute
+        //this is inserting the submitted title, season, genre, platform & notes into the tv DB
+        $stmt = $pdo->prepare('INSERT INTO tv (title, season, genre, platform, notes) VALUES (:title, :season, :genre, :platform, :notes)');
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':genre', $genre);
+        $stmt->bindParam(':season', $season);
+        $stmt->bindParam(':platform', $platform);
+        $stmt->bindParam(':notes', $notes);
+        
+        
+        if ($stmt->execute()) 
+        {
+            // success
+        } else {
+            // failure
+        }
+    }
+}
+
+
+
+/*
+
+GENERAL FUNCTIONS
+
+*/
 
 //this is the stuff needed to get Twig
 function getTwig()

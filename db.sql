@@ -101,3 +101,36 @@ INSERT INTO users (
   '$2y$10$LLDBg4Abpv38l0XwpjZKh.ljtgHs/CpgQLHgi0hjUyEybQa.PR4Ay', 
   'kinzadrewett@gmail.com'
 );
+
+--
+-- Table structure for table `tv`
+--
+
+DROP TABLE IF EXISTS `tv`;
+
+CREATE TABLE `tv` (
+  `show_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `genre` varchar(255) NOT NULL,
+  `season` int(11) NOT NULL,
+  `platform` varchar(255) NOT NULL,
+  `notes` text,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`show_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `tvusers`
+--
+
+/*DROP TABLE IF EXISTS `tvusers`;
+
+CREATE TABLE `tvusers` (
+  `show_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+*/
