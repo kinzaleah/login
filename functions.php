@@ -7,6 +7,7 @@ use Kinza\User;
 
 
 
+
 /*
         REGISTER FUNCTIONS
 */
@@ -323,14 +324,9 @@ SQL;
 
 
    
-
+//adds a show to the tv db based on user input - validation is done in tv.php
 function addShow($title, $genre, $season, $platform, $notes) {
     
-    
-    
-    
-    if (!empty($title) && !empty($genre) && !empty($season) && !empty($platform)) 
-    {
         $pdo = getDatabase();
     
         //pdo prepare, bindParam & execute
@@ -338,7 +334,7 @@ function addShow($title, $genre, $season, $platform, $notes) {
         $stmt = $pdo->prepare('INSERT INTO tv (title, season, genre, platform, notes) VALUES (:title, :season, :genre, :platform, :notes)');
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':genre', $genre);
-        $stmt->bindParam(':season', $season);
+        $stmt->bindParam(':season', $season, PDO::PARAM_INT);
         $stmt->bindParam(':platform', $platform);
         $stmt->bindParam(':notes', $notes);
         
@@ -346,9 +342,73 @@ function addShow($title, $genre, $season, $platform, $notes) {
         if ($stmt->execute()) 
         {
             // success
+            
         } else {
             // failure
+            
         }
+}
+
+
+//functions to check the inputs
+
+function titleIsValid($title)
+{
+   //empty username
+    if (empty($title)) 
+    {
+        return "Please enter a Title!";
+        
+        //return a string of error message
+    } else {
+    
+        return true;
+    }
+}
+
+function seasonIsValid($season)
+{
+   //empty season or not a number
+    if (empty($season) || !preg_match('/^\d+$/', $season)) 
+    {
+        return "Please enter a valid season number!";
+        
+        //return a string of error message
+    } else {
+    
+        return true;
+    }
+}
+
+function genreIsValid($genre)
+{
+   //empty genre
+    if (empty($genre)) 
+    {
+        return "Please enter a Genre!";
+        
+        //return a string of error message
+    } else {
+    
+        return true;
+    }
+}
+
+
+function platformIsValid($platform)
+{
+    //array of valid platforms
+    $validPlatforms = ["netflix", "amazon-prime", "nowtv", "actual-tv", "kodi", "dvd"];
+    
+   //empty platform (unlikely) or if something is chosen that isn't in the list (also unlikely)
+    if (empty($platform) || !in_array($platform, $validPlatforms)) 
+    {
+        return "Please enter a Platform!";
+        
+        //return a string of error message
+    } else {
+    
+        return true;
     }
 }
 

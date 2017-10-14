@@ -1,3 +1,7 @@
+*{
+  box-sizing: border-box;
+}
+
 body {
 
   background: linear-gradient(to right, #4CFFA3 , #46f9e1);
@@ -161,3 +165,37 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
   padding: 20px 0;
 }
 
+.tv-form-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  
+}
+
+.tv-form-container label {
+  flex-basis: 30%;
+  
+}
+
+.tv-form-container input, 
+.tv-form-container textarea, 
+.tv-form-container select {
+  flex-basis: 70%;
+  
+  
+}
+
+.tv-form-container input, 
+.tv-form-container textarea, 
+.tv-form-container select,
+.tv-form-container label {
+  
+  margin-bottom: 10px;
+}
+
+.tv-error {
+  color: red;
+  width: 100%;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
