@@ -21,6 +21,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     $userId = $_SESSION["user"]->id;
  
     addBlog($blogTitle, $blogBody, $userId);
+    
+    header('Location: /blog');
 }
 
 

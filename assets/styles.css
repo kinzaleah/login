@@ -2,11 +2,11 @@
   box-sizing: border-box;
 }
 
+
 body {
 
   background: linear-gradient(to right, #4CFFA3 , #46f9e1);
   font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-  padding-left: 10px;
   color: #4d4d4d;
   max-width: 700px;
   margin: auto;
@@ -61,8 +61,18 @@ ul {
 }
 
 a {
-  text-decoration: none;
+   text-decoration: none;
   color: inherit;
+}
+
+.login-link {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.password {
+  font-size: 12px;
+  width: 250px;
 }
 
 /*a:visited {
@@ -82,8 +92,38 @@ li {
 }
 
 
+
+
+/*  OVERALL PAGE LAYOUT
+    
+    navbar at top (one flexbox containing 2 flexboxes - nav & auth)
+    sidebar & content (one big flex box)
+    sidebar itself - no flexbox
+    
+*/
+
+/* main - flexbox for display*/
+.main {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+/*.sidebar {
+  flex-basis: 20%;
+  margin-top: 40px;
+}
+*/
+.content {
+  flex-basis: 80%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
 /*navigation bar at the top - have used flex box twice here
 once for overall nav bar, then for the two parts of it (general and auth)*/
+
 .navigation {
   display: flex;
   flex-direction: row;
@@ -92,13 +132,10 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
 
 .nav-container{
   justify-content: space-between;
-  
+  padding-bottom: 40px;
 }
 
-.navigation-general {
-  display: flex;
-  flex-direction: row;
-}
+
 
 .navigation-auth {
   display: flex;
@@ -123,6 +160,68 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
   background-color: #96ffd6;
 }
 
+.home-pic {
+  height: 100px;
+  background-image: url("/assets/img/KL-smaller-both.png");
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: cover;
+  display: block;
+  width: 78px;
+}
+
+.home-pic:hover {
+  background-position: 0 0;
+}
+
+.burger-button {
+  margin-top: 18px;
+  background: url("/assets/img/menu.svg");
+  width: 32px;
+  height: 32px;
+  border: none;
+}
+
+
+/* sidebar navigation */
+
+.side-navigation {
+  background: linear-gradient(to right, #fff996 , #46f9e1);
+  position:absolute;
+  width: 100%;
+}
+
+.side-navigation > ul > li {
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.side-link {
+  line-height:40px;
+  border: solid;
+  border-color: #686767;
+  background-color: #96ffd6;
+  display:inline-block;
+  padding: 0 8px;
+  font-size: 20px;
+  min-width: 80px;
+ }
+
+.side-link:hover {
+  background-color: #00fff1;
+  color: #303030;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+
+
+/* blog formatting */
+
 .blog-link {
   display: inline-block;
   font-size: 1.2em;
@@ -131,7 +230,7 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
   padding-bottom: 10px;
   background-size: 150% 15px;
   position: relative;
-  background-image: linear-gradient(to right, #ffc600 50%, #ffc600 50%);
+  background-image: linear-gradient(to right, #ffef35 50%, #ffef35 50%);
   background-position: 0;
   background-repeat: no-repeat;
 }
@@ -145,6 +244,15 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
     font-size: 1.5em;
     margin: 10px 0 0 0;
     display: inline-block;
+}
+
+.blog-body {
+  padding-top: 20px;
+  
+}
+
+.blog-user-date {
+  font-size: 12px;
 }
     /*background-size: 150% 15px;
     position: relative;
@@ -164,6 +272,9 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
 .insta {
   padding: 20px 0;
 }
+
+
+/* TV page formatting*/
 
 .tv-form-container {
   display: flex;

@@ -13,6 +13,8 @@ $authorsList = getAuthors();
 $posts = displayBlogs($author);
 
 
+
+
 echo $twig->render(
     'blog.twig', 
     [

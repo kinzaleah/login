@@ -37,6 +37,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         if(!usernameExists($lowerUsername)) 
         {
             registerUser($lowerUsername, $passwordHash, $_POST['email']);
+            //I want to redirect to the success page here so the user knows they've registered
+            header('Location: /register_success');
         } else {
             $usernameExistsError = "Username already exists, please choose another!";
         }

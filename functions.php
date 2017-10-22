@@ -182,6 +182,8 @@ BLOG INPUT FUNCTIONS
 
 */
 
+
+
 function titleIsEmpty($blogTitle)
 {
    //empty blog title
@@ -254,7 +256,7 @@ function displayBlogs($author = null)
     
     $query = 
 <<<SQL
-    SELECT title, body, username AS author 
+    SELECT title, body, username AS author, created_at AS date 
     FROM blog LEFT JOIN users ON blog.user_id = users.id
     $whereClause
     ORDER BY created_at DESC

@@ -1,43 +1,64 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/assets/styles.css">
-    <title>My First PHP Project</title>
-    <style>
-        .invalid {
-            border: solid 1px red;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navigation nav-container">
-        <ul class="navigation navigation-general">
-            <li class="nav-link"><a href="/home">Home</a></li>
-            <li class="nav-link"><a href="/blog">Blog</a></li>
-
-            {% if loggedIn %}
-                <li class="nav-link"><a href="/blog_input">Post</a></li>
-                <li class="nav-link"><a href="/instagram">Insta</a></li>
-                <li class="nav-link"><a href="/tv">TV</a></li>
-            {% endif %}
-        </ul>
-        
-        <ul class="navigation navigation-auth">
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="/assets/styles.css">
+        <title>My First PHP Project</title>
+        <style>
+            .invalid {
+                border: solid 1px red;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navigation nav-container">
             
-            {% if loggedIn %}
-                <li class="nav-auth"><a href="/logged_out">Log out</a></li>
-            {% else %}
-                <li class="nav-auth"><a href="/login">Log in</a></li>
-                <li class="nav-auth"><a href="/register">Register</a></li>
-            {% endif %}
-        </ul>
-    </nav>
+            <button class="burger-button"></button>
+            
+            <a class="home-pic" href="/home"></a>
+            
+            
+            <ul class="navigation navigation-auth">
+                
+                {% if loggedIn %}
+                    <li><a class="nav-auth" href="/logged_out">Log out</a></li>
+                {% else %}
+                    <li><a class="nav-auth" href="/login">Log in</a></li>
+                    <li><a class="nav-auth" href="/register">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        
+        
+        <div class="main">  
+            
+                
+            <nav class="js-side-menu side-navigation hidden">
+                <ul>
+                    <li class="side-item"><a class="side-link" href="/home">Home</a></li>
+                    <li class="side-item"><a class="side-link" href="/blog">Blog</a></li>
+        
+                    {% if loggedIn %}
+                        <li class="side-item"><a class="side-link" href="/blog_input">Post</a></li>
+                        <li class="side-item"><a class="side-link" href="/instagram">Insta</a></li>
+                        <li class="side-item"><a class="side-link" href="/tv">TV</a></li>
+                    {% endif %}
+                </ul>
+                
+            </nav>
+            
+            
+            <div class="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div> 
     
-    {% block content %}{% endblock %}
-</body>
+    
+        <script src="/assets/script.js"></script>
+    
+    </body>
 </html>
