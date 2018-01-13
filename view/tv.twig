@@ -9,19 +9,34 @@
     <p>Set up your watchlist here</p>
     
     <form action="/tv" method="POST" class="tv-form-container">
-        <label for="title">Title:</label>  <input type="text" name="title" id="title" class="{% if errorMessages.title %}invalid{% endif %}"><p class="{% if errorMessages.title %}tv-error{% endif %}">{{ errorMessages.title }}</p> 
-        <label for="season">Season:</label>  <input type="text" name="season" id="season" class="{% if errorMessages.season %}invalid{% endif %}"><p class="{% if errorMessages.season %}tv-error{% endif %}">{{ errorMessages.season }}</p> 
-        <label for="genre">Genre:</label>  <input type="text" name="genre" id="genre" class="{% if errorMessages.genre %}invalid{% endif %}"><p class="{% if errorMessages.genre %}tv-error{% endif %}">{{ errorMessages.genre }}</p>
-        <label for="platform" class="{% if errorMessages.platform %}invalid{% endif %}"><p class="{% if errorMessages.platform %}tv-error{% endif %}">{{ errorMessages.platform }}</p>Platform:</label> 
-            <select name="platform" id="platform">
-                <option value="netflix">Netflix</option>
-                <option value="amazon-prime">Amazon Prime</option>
-                <option value="nowtv">NOW TV</option>
-                <option value="kodi">Kodi</option>
-                <option value="actual-tv">Actual TV</option>
-                <option value="dvd">DVD</option>
-            </select>
-        <label for="notes">Notes:</label> <textarea name="notes" id="notes" rows="5" cols="30"></textarea>
+        
+        <label for="title">Title:</label>  
+        <input type="text" name="title" id="title" class="{% if errorMessages.title %}invalid{% endif %}">
+        <p class="{% if errorMessages.title %}tv-error{% endif %}">{{ errorMessages.title }}</p> 
+        
+        <label for="season">Season:</label>  
+        <input type="text" name="season" id="season" class="{% if errorMessages.season %}invalid{% endif %}">
+        <p class="{% if errorMessages.season %}tv-error{% endif %}">{{ errorMessages.season }}</p> 
+        
+        <label for="genre">Genre:</label>  
+        <input type="text" name="genre" id="genre" class="{% if errorMessages.genre %}invalid{% endif %}">
+        <p class="{% if errorMessages.genre %}tv-error{% endif %}">{{ errorMessages.genre }}</p>
+        
+        <label for="platform" class="{% if errorMessages.platform %}invalid{% endif %}">
+            <p class="{% if errorMessages.platform %}tv-error{% endif %}">{{ errorMessages.platform }}</p>
+            Platform:
+        </label> 
+        <select name="platform" id="platform">
+            <option value="netflix">Netflix</option>
+            <option value="amazon-prime">Amazon Prime</option>
+            <option value="nowtv">NOW TV</option>
+            <option value="kodi">Kodi</option>
+            <option value="actual-tv">Actual TV</option>
+            <option value="dvd">DVD</option>
+        </select>
+        
+        <label for="notes">Notes:</label> 
+        <textarea name="notes" id="notes" rows="5" cols="30"></textarea>
         <p><input type="submit" value="Add"></p>
     </form>
     

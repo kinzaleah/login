@@ -83,7 +83,7 @@ function usernameExists($lowerUsername)
        return $userExists;
        
     } else {
-        // failure - throw an exception?
+        // failure - throw an exception - add later
     }
 }
 
