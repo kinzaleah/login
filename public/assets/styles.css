@@ -95,11 +95,11 @@ li {
 
 
 /*  OVERALL PAGE LAYOUT
-    
+
     navbar at top (one flexbox containing 2 flexboxes - nav & auth)
     sidebar & content (one big flex box)
     sidebar itself - no flexbox
-    
+
 */
 
 /* main - flexbox for display*/
@@ -127,7 +127,7 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
 .navigation {
   display: flex;
   flex-direction: row;
-  
+
 }
 
 .nav-container{
@@ -248,7 +248,7 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
 
 .blog-body {
   padding-top: 20px;
-  
+
 }
 
 .blog-user-date {
@@ -280,27 +280,27 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
   display: flex;
   flex-wrap: wrap;
   width: 400px;
-  
+
 }
 
 .tv-form-container label {
   flex-basis: 30%;
-  
+
 }
 
-.tv-form-container input, 
-.tv-form-container textarea, 
+.tv-form-container input,
+.tv-form-container textarea,
 .tv-form-container select {
   flex-basis: 70%;
-  
-  
+
+
 }
 
-.tv-form-container input, 
-.tv-form-container textarea, 
+.tv-form-container input,
+.tv-form-container textarea,
 .tv-form-container select,
 .tv-form-container label {
-  
+
   margin-bottom: 10px;
 }
 
