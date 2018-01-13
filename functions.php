@@ -439,10 +439,10 @@ function getTwig()
  */
 function getDatabase() {
     //pdo connection stuff in its own function
-        $host = getenv('IP') . ':3306';
-        $db   = 'c9';
-        $user = getenv('C9_USER');
-        $pass = '';
+        $host = getenv('MYSQL_HOST') . ':3306';
+        $db   = getenv('MYSQL_DB');
+        $user = getenv('MYSQL_USER');
+        $pass = getenv('MYSQL_PASS');
         $charset = 'utf8';
     
         $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

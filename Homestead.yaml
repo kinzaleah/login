@@ -17,3 +17,12 @@ databases:
     - homestead
 name: login
 hostname: login
+variables:
+    - key: MYSQL_HOST
+      value: localhost
+    - key: MYSQL_DB
+      value: homestead
+    - key: MYSQL_USER
+      value: homestead
+    - key: MYSQL_PASS
+      value: secret
