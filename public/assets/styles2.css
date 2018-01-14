@@ -1,0 +1,143 @@
+*{
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+
+body {
+
+    background: #c2f5f7;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    color: #4d4d4d;
+    max-width: 700px;
+    margin: auto;
+    padding: 10px;
+    height: 100%;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+
+
+/*  CSS GRID - WHOLE PAGE LAYOUT */
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-gap: 3px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 100px auto 40px;
+    grid-template-areas:
+        "h h h h h h h h h h h h"
+        "m m c c c c c c c c c c"
+        "f f f f f f f f f f f f";
+
+}
+
+
+
+/* HEADER which includes logo (left) and log in/out (right) */
+
+.header {
+    display: flex;
+    grid-area: h;
+    justify-content: space-between;
+}
+
+/* LOGO  */
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-pic {
+    height: 100px;
+    background-image: url("/assets/img/KL-home.png");
+    background-repeat: no-repeat;
+    background-position: -75px 0;
+    background-size: cover;
+    display: block;
+    width: 75px;
+}
+
+.home-pic:hover {
+    background-position: 0 0;
+}
+
+/* Log in / Register  or Log Out */
+
+.header-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.header-right > p {
+
+    padding-right: 10px;
+
+}
+
+
+
+
+/*  MENU */
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    grid-area: m;
+    align-items: center;
+}
+
+.burger-button {
+    margin-top: 18px;
+    background: url("/assets/img/menu.svg");
+    width: 32px;
+    height: 32px;
+    border: none;
+}
+
+
+/*  CONTENT */
+
+.content {
+    grid-area: c;
+
+
+}
+
+/*  FOOTER */
+
+.footer {
+    display: flex;
+    grid-area: f;
+
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer > a {
+    padding: 10px;
+    font-size: 0.8em;
+
+}
+
+
+/* INSTAGRAM */
+
+.instapic {
+    max-width: 500px;
+    max-height: 500px;
+}
+

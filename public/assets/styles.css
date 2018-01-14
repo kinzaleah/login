@@ -162,12 +162,12 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
 
 .home-pic {
   height: 100px;
-  background-image: url("/assets/img/KL-smaller-both.png");
+  background-image: url("/assets/img/KL-home.png");
   background-repeat: no-repeat;
-  background-position: 100% 0;
+  background-position: -75px 0;
   background-size: cover;
   display: block;
-  width: 78px;
+  width: 75px;
 }
 
 .home-pic:hover {
@@ -225,7 +225,7 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
 .blog-link {
   display: inline-block;
   font-size: 1.2em;
-  margin-left: 0px;
+  margin-left: 0;
   font-weight: bold;
   padding-bottom: 10px;
   background-size: 150% 15px;
@@ -236,7 +236,7 @@ once for overall nav bar, then for the two parts of it (general and auth)*/
 }
 
 .blog-post {
-  padding: 20px 0px 20px 0px;
+  padding: 20px 0 20px 0;
   font-weight: bold;
 }
 
