@@ -7,7 +7,7 @@ keys:
     - ~/.ssh/id_rsa
 folders:
     -
-        map: 'C:\Users\Tim\projects\login'
+        map: .
         to: /home/vagrant/login
 sites:
     -
