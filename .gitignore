@@ -53,3 +53,5 @@ classes/Config.php
 node_modules/
 
 .vagrant
+
+.idea/
