@@ -1,10 +1,10 @@
 {
   "name": "login",
   "version": "0.1.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {},
-  "devDependencies": { 
+  "devDependencies": {
+    "browser-sync": "^2.23.5",
     "testcafe": "^0.16.2"
   },
   "scripts": {
@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/kinzaleah/login/issues"
   },
-  "homepage": "https://github.com/kinzaleah/login#readme"
+  "homepage": "https://github.com/kinzaleah/login#readme",
+  "description": ""
 }
