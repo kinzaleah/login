@@ -3,7 +3,7 @@
 require_once 'vendor/autoload.php';
 
 use Kinza\User;
-
+use Kinza\Config;
 
 
 
@@ -56,26 +56,34 @@ function passwordIsValid($password)
 
 
 
-/**
- * check if username already exists in db - use $lowerUsername var
+/*
+  check if username already exists in db - use $lowerUsername var
  */
+
 function usernameExists($lowerUsername) 
 {
     
     //need to set up the pdo connection again
+
     $pdo = getDatabase();
    
-    //preparing stmt here that selects number of rows (count(id)) where the 
-    //username is equal to the lowerUsername var (done with binding to avoid
-    //sql injection).
+    /*
+    preparing stmt here that selects number of rows (count(id)) where the
+    username is equal to the lowerUsername var (done with binding to avoid
+    sql injection).
+    */
+
     $stmt = $pdo->prepare('SELECT count(id) AS userExists FROM users WHERE username = :username');
     $stmt->bindParam(':username', $lowerUsername);
     
-   // when pdo stmt is executed I fetch the result of the SQL query
-   // this should be either 1 or 0 because username column is set to unique in db
-   // I then convert this to a boolean so it returns true (if 1) or false (if 0)
-   // If true and username does exist already then I echo error code
-   // I need to then return the $userExists variable
+   /*
+   when pdo stmt is executed I fetch the result of the SQL query
+   this should be either 1 or 0 because username column is set to unique in db
+   I then convert this to a boolean so it returns true (if 1) or false (if 0)
+   If true and username does exist already then I echo error code
+   I need to then return the $userExists variable
+    */
+
     if ($stmt->execute()) {
         // success
        $userExists = (bool) $stmt->fetch()['userExists'];
@@ -89,9 +97,10 @@ function usernameExists($lowerUsername)
 
 
 
-/**
+/*
  * write to DB if all inputs ok and not empty
  */
+
 function registerUser($lowerUsername, $passwordHash, $email) 
 {
     if (!empty($lowerUsername) && !empty($passwordHash) && !empty($email)) 
@@ -456,3 +465,13 @@ function getDatabase() {
         return new PDO($dsn, $user, $pass, $opt);
 }
 
+// creates Spotify Session
+
+function getSpotifySession() {
+    return new \SpotifyWebAPI\Session(
+        Config::SPOTIFY_CLIENT_ID,
+        Config::SPOTIFY_CLIENT_SECRET,
+        Config::SPOTIFY_URL_REDIRECT
+    );
+
+}
