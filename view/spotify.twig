@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    <h1 class="heading">Spotify</h1>
+
+
+
+    <p class="playlist-title">{{ playlist.name }}</p>
+    <p>by Ross Peacey </p>
+    <p class="play-in-spotify"><a href="{{ playlist.external_urls.spotify }}" target="_blank" >Play in Spotify</a></p>
+
+    <div class="track-container">
+
+        {% for playlistTrack in playlistTracks %}
+
+        <div class="track">
+            <img class="spotify-pic" height="200" width="200" src="{{ playlistTrack.track.album.images[1].url }}">
+            <p class="track-text"> {{ playlistTrack.track.artists[0].name }} - <br>{{ playlistTrack.track.name }}</p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
