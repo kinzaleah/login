@@ -1,6 +1,7 @@
 {
     "require": {
-        "twig/twig": "^1.33"
+        "twig/twig": "^1.33",
+        "jwilsson/spotify-web-api-php": "^2.1"
     },
     
     "autoload": {
