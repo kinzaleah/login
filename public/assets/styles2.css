@@ -96,7 +96,7 @@ a {
     display: flex;
     flex-direction: column;
     grid-area: m;
-    align-items: center;
+    align-items: left;
 }
 
 .burger-button {
@@ -140,4 +140,32 @@ a {
     max-width: 500px;
     max-height: 500px;
 }
+
+/* SPOTIFY */
+
+.playlist-title {
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.play-in-spotify {
+    padding-bottom: 20px;
+}
+
+.track-text {
+    font-weight: bold;
+    height: 200px;
+}
+
+.track {
+    /*background-color: #02ffc5;*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+    grid-gap: 10px;
+    grid-auto-rows: 200px;
+
+}
+
+
+
 
