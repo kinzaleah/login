@@ -13,6 +13,7 @@ sites:
     -
         map: homestead.test
         to: /home/vagrant/login/public/
+        php: "7.1"
 databases:
     - homestead
 name: login
