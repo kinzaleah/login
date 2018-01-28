@@ -47,11 +47,8 @@ Temporary Items
 .apdisk
 
 vendor/
-
 classes/Config.php
-
 node_modules/
-
 .vagrant
-
 .idea/
+data/
