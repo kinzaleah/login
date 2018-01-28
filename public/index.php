@@ -6,11 +6,12 @@ require __DIR__ .'/../functions.php';
 
 session_start();
 
- 
-$urlParts = explode('/', $_SERVER['REQUEST_URI']);
+$urlParts = parse_url($_SERVER['REQUEST_URI']);
+
+$urlPath = explode('/', $urlParts['path']);
 
 //if $urlParts[1] is truthy use it, otherwise use 'home'
-$pageName = $urlParts[1] ?: 'home';
+$pageName = $urlPath[1] ?: 'home';
 
 
 
