@@ -12,7 +12,7 @@ if (!empty($_SESSION['user']))
     
 }
 
-
+$errorMessages = [];
 //run the functions if someone posts - validateInput first then if all ok registerUSer
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
@@ -43,33 +43,28 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             $usernameExistsError = "Username already exists, please choose another!";
         }
     }
+
+    if ($usernameIsValid !== true)
+    {
+        $errorMessages['username'] = $usernameIsValid;
+
+    }
+
+    if (!empty($usernameExistsError))
+    {
+        $errorMessages['username'] = $usernameExistsError;
+    }
+
+    if ($emailIsValid !== true)
+    {
+        $errorMessages['email'] = $emailIsValid;
+    }
+
+    if ($passwordIsValid !== true)
+    {
+        $errorMessages['password'] = $passwordIsValid;
+    }
 }
-
-
-$errorMessages = [];
-
-if ($usernameIsValid !== true) 
-{
-    $errorMessages['username'] = $usernameIsValid;
-   
-}
-
-if (!empty($usernameExistsError)) 
-{
-    $errorMessages['username'] = $usernameExistsError;
-}
-
-if ($emailIsValid !== true) 
-{
-    $errorMessages['email'] = $emailIsValid;
-}
-
-if ($passwordIsValid !== true) 
-{
-    $errorMessages['password'] = $passwordIsValid;
-}
-
 
 echo $twig->render('register.twig', ['errorMessages' => $errorMessages, 'loggedIn' => !empty($_SESSION['user'])]);
 
-?>
