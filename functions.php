@@ -252,7 +252,7 @@ function addBlog($blogTitle, $blogBody, $userId)
 
 
 
-function displayBlogs($author = null) 
+function displayBlogPosts($author = null)
 {
     $pdo = getDatabase();
     
@@ -265,7 +265,7 @@ function displayBlogs($author = null)
     
     $query = 
 <<<SQL
-    SELECT title, body, username AS author, created_at AS date 
+    SELECT blog_id, title, body, username AS author, created_at AS date 
     FROM blog LEFT JOIN users ON blog.user_id = users.id
     $whereClause
     ORDER BY created_at DESC
@@ -323,6 +323,84 @@ SQL;
     return $result;
     
     
+}
+
+//SINGLE BLOG POST
+
+/**
+ * @param int $id
+ * @return array
+ * @throws Exception
+ */
+function getSingleBlogPost(int $id)
+{
+    $pdo = getDatabase();
+
+    $query =
+        <<<SQL
+    SELECT blog_id, title, body, username AS author, created_at AS date 
+    FROM blog LEFT JOIN users ON blog.user_id = users.id
+    WHERE blog_id = :blog_id
+    ORDER BY created_at DESC
+SQL;
+
+    //pdo prepare, bindParam & execute
+    //this is selecting the blogs from the db in order of created at
+    $stmt = $pdo->prepare($query);
+
+    $stmt->bindParam(':blog_id', $id);
+
+    if (!$stmt->execute()) {
+        throw new Exception("Failed to get blog posts - database error");
+    }
+
+    //fetch the results - will be an associative array with the column names as keys
+    //fetch all returns all the rows i.e. all the blog posts
+    $result = $stmt->fetchAll();
+
+    return $result[0];
+}
+
+
+
+
+
+
+
+//SAVE EDITED BLOG -
+
+/**
+ * @param int $blogId
+ * @param string $blogTitle
+ * @param string $blogBody
+ */
+function updateBlogPost(int $blogId, string $blogTitle, string $blogBody) {
+    
+    //validation? can't save empty title or body
+    if (empty($blogTitle) || empty($blogBody)) {
+        //validate
+        return;
+    }
+    //update in db - update sql query
+
+    $pdo = getDatabase();
+
+    //pdo prepare, bindParam & execute
+    //this is inserting the UPDATED blog title & body into DB if not empty
+    $stmt = $pdo->prepare('UPDATE blog SET title = :title, body = :body WHERE blog_id = :blog_id');
+    $stmt->bindParam(':title', $blogTitle);
+    $stmt->bindParam(':body', $blogBody);
+    $stmt->bindParam(':blog_id', $blogId);
+
+
+
+    if ($stmt->execute())
+    {
+        // success
+    } else {
+        // failure
+    }
+
 }
 
 
