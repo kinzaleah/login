@@ -10,10 +10,7 @@ $author = !empty($urlParts[2]) ? $urlParts[2] : null;
 
 $authorsList = getAuthors();
 
-$posts = displayBlogs($author);
-
-
-
+$posts = displayBlogPosts($author);
 
 echo $twig->render(
     'blog.twig', 
