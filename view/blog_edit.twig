@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    <h1>Edit your blog post</h1>
+
+    <form action="/blog_edit" method="POST">
+
+        <p> <label> Title: <input type="text" name="title" value="{{ blogPost.title }}"> </label> </p>
+        <p> <label> Blog: <textarea name="body" rows="10" cols="50">{{ blogPost.body }}</textarea> </label> </p>
+        <input type="hidden" value="{{ blogPost.blog_id }}" name="id">
+
+        <p><input type="submit" value="Save changes"></p>
+
+    </form>
+
+{% endblock %}
