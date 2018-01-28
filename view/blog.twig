@@ -24,7 +24,7 @@
 
     {% for post in posts %}
         <div class="blog-post">
-            <h3 class="blog-title">{{ post.title }}</h3>
+            <a href="/blog_post?id={{ post.blog_id }}"><h3 class="blog-title">{{ post.title }}</h3></a>
             <p class="blog-user-date">By <span style="text-transform: capitalize">{{ post.author }}</span> - {{ post.date|date("d/m/Y")}} </p>
             	
 
