@@ -1,0 +1,15 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<h1>{{ blogPost.title }}</h1>
+
+    <div class="">
+        {{ blogPost.body }}
+    </div>
+
+   {% if userCanEdit %}
+       <a href="/blog_edit?id={{ blogPost.blog_id }}">Edit this post</a>
+    {% endif %}
+
+{% endblock %}
