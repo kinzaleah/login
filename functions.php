@@ -509,16 +509,7 @@ GENERAL FUNCTIONS
 
 */
 
-//this is the stuff needed to get Twig
-function getTwig()
-{
-   $loader = new Twig_Loader_Filesystem(__DIR__ . '/view');
-   $twig = new Twig_Environment($loader, [
-    //'cache' => __DIR__ . '/cache',
-    ]);
-    
-    return $twig;
-}
+
 
 /**
  * PDO connection for database
